@@ -2,6 +2,7 @@
   <div class="nav-wrapper">
     <div class="content">
         <slot/>
+<!--      获取Money等组件内容-->
     </div>
     <Nav/>
   </div>
