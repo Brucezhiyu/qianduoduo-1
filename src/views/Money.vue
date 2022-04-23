@@ -60,6 +60,7 @@ export default {
 
 .xxx {
   display: flex;
+  border: 1px solid red;
   flex-direction: column-reverse;
 
 }
