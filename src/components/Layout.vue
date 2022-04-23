@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
+  <div class="layout-wrapper">
+    <div class="content" :class="contentClass">
         <slot/>
 <!--      获取Money等组件内容-->
     </div>
@@ -10,12 +10,13 @@
 
 <script lang="ts">
 export default {
+  props:['contentClass'],
   name: "Layout.vue"
 }
 </script>
 
 <style lang="scss" scoped>
-.nav-wrapper {
+.layout-wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
