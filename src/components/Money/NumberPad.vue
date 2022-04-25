@@ -31,24 +31,27 @@ export default class NumberPad extends Vue {
   inputContent(event: MouseEvent) {
     const button = (event.target as HTMLButtonElement);//强制指定类型
     const input = button.textContent!;
-    if (this.output.length===16){return;}
+    if (this.output.length === 16) {
+      return;
+    }
     if (this.output === '0') {
       if ('0123456789'.indexOf(input) >= 0) {
         this.output = input;
         return;
-      }else {
-        this.output+=input;
+      } else {
+        this.output += input;
       }
       return;
     }
-    if (this.output.indexOf('.')>=0){
-      if (input==='.'){
+    if (this.output.indexOf('.') >= 0) {
+      if (input === '.') {
         return;
       }
     }
-      this.output+=input;
+    this.output += input;
 
   }
+
   remove() {
     if (this.output.length === 1) {
       this.output = '0';
@@ -56,11 +59,12 @@ export default class NumberPad extends Vue {
       this.output = this.output.slice(0, -1);
     }
   }
-  clear(){
-      this.output='0';
+
+  clear() {
+    this.output = '0';
   }
 
-  ok(){
+  ok() {
     return;
   }
 
