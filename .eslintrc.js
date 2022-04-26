@@ -9,7 +9,8 @@ module.exports = {
     '@vue/typescript/recommended'
   ],
   "globals":{
-    "__WebpackModuleApi":"writable"
+    "__WebpackModuleApi":"writable",
+    "RecordItem": true
   },
   parserOptions: {
     ecmaVersion: 2020
