@@ -3,7 +3,7 @@
     <Layout content-class="xxx">
       {{ recordList }}
       <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
-      <Notes @update:value="onUpdateNotes"/>
+      <Notes @update:value="onUpdateNotes" field-name="备注" placeholder="写点备注吧~"/>
       <Tags :data-source.sync="tags" @update:selected="onUpdateTags"/>
       <Types xxx="hi" :value.sync="record.type"/>
     </Layout>
