@@ -41,19 +41,24 @@ export default class EditLabel extends Vue {
       this.$router.replace('/404');
     }
   }
-  update(name:string){
-    if (this.tag){
-      tagListModel.update(this.tag.id,name)
-    }
-  }
-  remove(){
-    if (this.tag){
-      tagListModel.remove(this.tag.id)
 
+  update(name: string) {
+    if (this.tag) {
+      tagListModel.update(this.tag.id, name);
     }
   }
-  goBack(){
-    this.$router.back()
+
+  remove() {
+    if (this.tag) {
+      if (tagListModel.remove(this.tag.id)){
+        this.$router.back()
+      }else {window.alert('删除失败')}
+
+          }
+  }
+
+  goBack() {
+    this.$router.back();
   }
 }
 </script>
