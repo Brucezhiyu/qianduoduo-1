@@ -1,9 +1,8 @@
 <template>
   <div>
     <Layout content-class="xxx">
-      {{ recordList }}
       <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
-      <Notes @update:value="onUpdateNotes" field-name="备注" placeholder="写点备注吧~"/>
+      <FormItem @update:value="onUpdateNotes" field-name="备注" placeholder="写点备注吧~"/>
       <Tags :data-source.sync="tags" @update:selected="onUpdateTags"/>
       <Types xxx="hi" :value.sync="record.type"/>
     </Layout>
@@ -12,7 +11,7 @@
 
 <script lang="ts">
 import NumberPad from '@/components/Money/NumberPad.vue';
-import Notes from '@/components/Money/Notes.vue';
+import FormItem from '@/components/Money/FormItem.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
 import Vue from 'vue';
@@ -25,7 +24,7 @@ const recordList = recordListModel.fetch();
 const tagList = tagListModel.fetch();
 
 @Component(
-    {components: {Types, Tags, Notes, NumberPad}}
+    {components: {Types, Tags, FormItem, NumberPad}}
 )
 export default class Money extends Vue {
   tags = tagList;

@@ -4,12 +4,12 @@
       <router-link class="tag"
                    v-for="tag in tags" :key="tag.id"
                    :to="`/labels/edit/${tag.id}`">
-        <span>{{tag.name}}</span>
+        <span>{{ tag.name }}</span>
         <Icon name="right"/>
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <button class="createTag" @click="createTag">新建标签</button>
+      <Button class="createTag" @click="createTag">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -19,17 +19,18 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import tagListModel from '@/models/tagListModel';
 
-tagListModel.fetch()
+tagListModel.fetch();
 
 @Component
-export default class Labels extends Vue{
-   tags=tagListModel.data
-  createTag(){
-     const name=window.prompt('请输入标签名')
-    if (name){
-      const message=tagListModel.create(name)
-      if (message==='duplicated'){
-        window.alert('标签名重复')
+export default class Labels extends Vue {
+  tags = tagListModel.data;
+
+  createTag() {
+    const name = window.prompt('请输入标签名');
+    if (name) {
+      const message = tagListModel.create(name);
+      if (message === 'duplicated') {
+        window.alert('标签名重复');
       }
     }
   }
@@ -40,7 +41,7 @@ export default class Labels extends Vue{
   background: white;
   font-size: 16px;
 
-  .tag {
+  > .tag {
     min-height: 44px;
     display: flex;
     align-items: center;
@@ -56,14 +57,16 @@ export default class Labels extends Vue{
     }
   }
 }
-.createTag{
+
+.createTag {
   background: #F8D02D;
   border-radius: 4px;
   border: none;
   height: 40px;
   padding: 0 16px;
-  &-wrapper{
-text-align: center;
+
+  &-wrapper {
+    text-align: center;
     padding: 16px;
     margin-top: 30px;
   }

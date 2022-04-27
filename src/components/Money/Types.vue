@@ -1,9 +1,9 @@
 <template>
   <div class="top">
     <ul class="types">
-      <li :class="type ==='-'&&'selected'"
+      <li :class="value ==='-'&&'selected'"
           @click="selectType('-')">支出</li>
-      <li :class="type ==='+'&&'selected'"
+      <li :class="value ==='+'&&'selected'"
           @click="selectType('+')">收入</li>
     </ul>
   </div>
@@ -16,7 +16,7 @@ import {Component, Prop} from 'vue-property-decorator';
 
 @Component//装饰器
 export default class Types extends Vue {
-  @Prop() readonly type!: string;
+  @Prop() readonly value!: string;
 
   selectType(type: string) {
     if (type !== '-' && type !== '+') {
