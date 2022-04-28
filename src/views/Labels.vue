@@ -17,13 +17,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import tagListModel from '@/models/tagListModel';
+import Button from '@/components/Money/Button.vue';
 
-tagListModel.fetch();
 
-@Component
+@Component({
+  components:{Button}
+})
 export default class Labels extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList
 
   createTag() {
     const name = window.prompt('请输入标签名');
