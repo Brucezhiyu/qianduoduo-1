@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <ul class="current">
-      <li v-for="tag in dataSource" :key="tag.id" @click="toggle(tag)"
+      <li v-for="tag in tagList" :key="tag.id" @click="toggle(tag)"
           :class="{selected:selectedTags.indexOf(tag)>=0}">{{ tag.name }}
       </li>
     </ul>
@@ -16,10 +16,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
+import store from '@/store/index2';
 
 @Component//装饰器
 export default class Tags extends Vue {
-  @Prop() readonly dataSource: string[] | undefined;
+  tagList = store.fetchTags();
   selectedTags: string[] = [];
 
   toggle(tag: string) {
@@ -29,18 +30,20 @@ export default class Tags extends Vue {
     } else {
       this.selectedTags.push(tag);
     }
-    this.$emit('upDate:value',this.selectedTags)
+    this.$emit('update:value', this.selectedTags);
   }
 
   create() {
+    const names = this.tagList.map(item => item.name);
+
     const name = window.prompt('请输入标签名');
-    if (name === '') {
+    if (!name) {
       window.alert('标签名不能为空');
-    } else if (this.dataSource) {
-      if (this.dataSource.indexOf(name!)>=0) {
+    } else if (this.tagList) {
+      if (names.indexOf(name) >= 0) {
         window.alert('标签名重复');
-      }else {
-        this.$emit('update:dataSource', [...this.dataSource, name]);
+      } else {
+        store.createTag(name);
       }
     }
   }
