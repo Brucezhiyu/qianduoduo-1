@@ -24,15 +24,18 @@ import store from '@/store/index2';
 window.localStorage.setItem('version', '0.0.1');
 
 @Component(
-    {components: {Types, Tags, FormItem, NumberPad}}
-)
+    {
+      components: {Types, Tags, FormItem, NumberPad},
+      computed: {
+        recordList() {
+          return store.recordList;
+        }
+      }
+    })
 export default class Money extends Vue {
-  recordList=store.recordList;
   record: RecordItem = {
     tags: [], notes: '', type: '-', amount: 0
   };
-
-
   onUpdateNotes(value: string) {
     this.record.notes = value;
 
@@ -44,7 +47,7 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    store.createRecord(this.record)
+    store.createRecord(this.record);
   }
 }
 
