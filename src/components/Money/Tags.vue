@@ -20,14 +20,17 @@ import {Component, Prop} from 'vue-property-decorator';
 @Component({
   computed: {
     tagList() {
-      //TODO
-     // this.$store.fetchTags();
-      return [];
+      return this.$store.state.tagList;
     }
   }
 })//装饰器
 export default class Tags extends Vue {
   selectedTags: string[] = [];
+
+  created() {
+
+    this.$store.commit('fetchTags');
+  }
 
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
@@ -39,24 +42,19 @@ export default class Tags extends Vue {
     this.$emit('update:value', this.selectedTags);
   }
 
-  create() {//TODO
+  create() {
     // const names = this.tagList.map(item => item.name);
     //
-    // const name = window.prompt('请输入标签名');
-    // if (!name) {
-    //   window.alert('标签名不能为空');
-    // } else if (this.tagList) {
-    //   if (names.indexOf(name) >= 0) {
-    //     window.alert('标签名重复');
-    //   } else {
-    //     store.createTag(name);
-    //   }
-    // }
+    const name = window.prompt('请输入标签名');
+    if (!name) {
+      window.alert('标签名不能为空');
+    }
+    this.$store.commit('createTag', name);
   }
 }
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
 
 .tags {
