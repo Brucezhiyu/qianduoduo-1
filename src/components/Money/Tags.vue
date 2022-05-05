@@ -16,11 +16,17 @@
 <script lang="ts">
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
-import store from '@/store/index2';
 
-@Component//装饰器
+@Component({
+  computed: {
+    tagList() {
+      //TODO
+     // this.$store.fetchTags();
+      return [];
+    }
+  }
+})//装饰器
 export default class Tags extends Vue {
-  tagList = store.fetchTags();
   selectedTags: string[] = [];
 
   toggle(tag: string) {
@@ -33,24 +39,24 @@ export default class Tags extends Vue {
     this.$emit('update:value', this.selectedTags);
   }
 
-  create() {
-    const names = this.tagList.map(item => item.name);
-
-    const name = window.prompt('请输入标签名');
-    if (!name) {
-      window.alert('标签名不能为空');
-    } else if (this.tagList) {
-      if (names.indexOf(name) >= 0) {
-        window.alert('标签名重复');
-      } else {
-        store.createTag(name);
-      }
-    }
+  create() {//TODO
+    // const names = this.tagList.map(item => item.name);
+    //
+    // const name = window.prompt('请输入标签名');
+    // if (!name) {
+    //   window.alert('标签名不能为空');
+    // } else if (this.tagList) {
+    //   if (names.indexOf(name) >= 0) {
+    //     window.alert('标签名重复');
+    //   } else {
+    //     store.createTag(name);
+    //   }
+    // }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped >
 @import "~@/assets/style/helper.scss";
 
 .tags {
