@@ -6,7 +6,7 @@ const localStorageKeyName = 'tagList';
 const tagStore = {
     tagList: [] as Tag[],
     fetchTags() {
-        this.tagList = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]') as [];
+        this.tagList = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
         return this.tagList;
     },
     findTag(id: string) {
@@ -19,7 +19,7 @@ const tagStore = {
             return 'duplicated';
         }
         const id = createId().toString();
-        this.tagList.push({id: id, name: name});
+        this.tagList.push({id, name: name});
         this.saveTags();
         return 'success';
 
@@ -28,7 +28,7 @@ const tagStore = {
         let index = -1;
         for (let i = 0; i < this.tagList.length; i++) {
             if (this.tagList[i].id === id) {
-                index = -i;
+                index = i;
                 break;
             }
         }
