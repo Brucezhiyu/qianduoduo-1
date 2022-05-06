@@ -1,12 +1,12 @@
 <template>
   <div>
     <Layout content-class="xxx">
-      <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
+      <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
       <FormItem @update:value="onUpdateNotes"
                 field-name="备注"
                 placeholder="写点备注吧~"/>
       <Tags/>
-      <Types xxx="hi" :value.sync="record.type"/>
+      <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
     </Layout>
   </div>
 </template>
@@ -15,19 +15,21 @@
 import NumberPad from '@/components/Money/NumberPad.vue';
 import FormItem from '@/components/Money/FormItem.vue';
 import Tags from '@/components/Money/Tags.vue';
-import Types from '@/components/Money/Types.vue';
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
+import recordTypeList from '@/constants/recordTypeList';
+import Tabs from '@/components/Tabs.vue';
 
 
 @Component(
     {
-      components: {Types, Tags, FormItem, NumberPad},
+      components: {Tabs, Tags, FormItem, NumberPad},
     })
 export default class Money extends Vue {
   get recordList() {
     return this.$store.state.recordList;
   }
+  recordTypeList=recordTypeList
   record: RecordItem = {
     tags: [], notes: '', type: '-', amount: 0
   };
@@ -36,11 +38,6 @@ export default class Money extends Vue {
   }
   onUpdateNotes(value: string) {
     this.record.notes = value;
-
-  }
-
-  onUpdateAmount(value: string) {
-    this.record.amount = parseFloat(value);
 
   }
 
