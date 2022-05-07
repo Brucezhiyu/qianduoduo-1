@@ -1,22 +1,14 @@
+type RootState = {
+    recordList: RecordItem[],
+    tagList: Tag[],
+    currentTag?: Tag,
+}
 type RecordItem = {
     tags: string[]
     type: string
     notes: string
     amount: number
-    createdAt?: Date
-}
-
-interface Window {
-    store: {
-        tagList: Tag[];
-        createTag: (name: string) => void;
-        removeTag: (id: string) => boolean;
-        updateTag: (id: string, name: string) => 'success' | 'not found' | 'duplicated'
-        findTag: (id: string) => Tag | undefined
-        recordList: RecordItem[]
-        createRecord: (record: RecordItem) => void
-    };
-
+    createdAt?: string
 }
 
 type  Tag = {
