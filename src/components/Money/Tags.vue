@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
+import {Component} from 'vue-property-decorator';
 import {mixins} from 'vue-class-component';
 import {TagHelper} from '@/mixins/TagHelper';
 
@@ -63,6 +63,7 @@ export default class Tags extends mixins(TagHelper) {
       border-radius: $h/2;
       padding: 0 16px;
       margin-right: 12px;
+      margin-bottom: 12px;
 
       &.selected {
         background: #F8D02D;
