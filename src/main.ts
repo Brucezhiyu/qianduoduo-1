@@ -13,7 +13,7 @@ Vue.component('Nav', Nav);
 Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
 
-
+document.title='钱多多记账'
 new Vue({
     router,
     store,
