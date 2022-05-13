@@ -14,6 +14,15 @@ Vue.use(Toast);
 import { Dialog } from "vant"
 Vue.use(Dialog)
 
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)//全局使用ElementUI
+import{MessageBox} from 'element-ui';
+Vue.prototype.$msgbox = MessageBox;
+
+
+
 Vue.component('Nav', Nav);
 Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);

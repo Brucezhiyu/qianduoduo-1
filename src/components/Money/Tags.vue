@@ -6,9 +6,9 @@
       </li>
     </ul>
     <div class="new">
-      <button @click="createTag">
+      <el-button @click="createTag">
         新增标签
-      </button>
+      </el-button>
     </div>
   </div>
 </template>

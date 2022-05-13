@@ -20,6 +20,7 @@ import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import recordTypeList from '@/constants/recordTypeList';
 import Tabs from '@/components/Tabs.vue';
+import {Toast} from 'vant';
 
 
 @Component(
@@ -50,7 +51,7 @@ export default class Money extends Vue {
     }
     this.$store.commit('createRecord', this.record);
     if (this.$store.state.createRecordError === null) {
-      window.alert('已保存');
+      Toast.success('已保存');
       this.record.notes = '';
     }
   }
