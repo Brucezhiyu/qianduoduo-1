@@ -18,7 +18,15 @@ import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import {mixins} from 'vue-class-component';
 import {TagHelper} from '@/mixins/TagHelper';
+import { Form } from 'vant';
+import { Field } from 'vant';
+import { Dialog } from 'vant';
+import { Button } from 'vant';
 
+Vue.use(Button);
+Vue.use(Dialog);
+Vue.use(Form);
+Vue.use(Field);
 @Component//装饰器
 export default class Tags extends mixins(TagHelper) {
   selectedTags: string[] = [];
