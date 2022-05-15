@@ -2,13 +2,22 @@
   <div>
     <Layout content-class="xxx">
       <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
-      <FormItem @update:value="onUpdateNotes"
-                field-name="备注"
-                placeholder="写点备注吧~"
-                :value.sync="record.notes"/>
+      <div class="notes">
+        <FormItem @update:value="onUpdateNotes"
+                  field-name="备注"
+                  placeholder="写点备注吧~"
+                  :value.sync="record.notes"/>
+      </div>
+      <div class="createAt">
+        <FormItem field-name="日期"
+                  placeholder="输入日期"
+                  type="date"
+                  :value.sync="record.createdAt"/>
+      </div>
       <Tags @update:value="record.tags=$event"/>
       <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
     </Layout>
+
   </div>
 </template>
 
@@ -28,13 +37,14 @@ import {Toast} from 'vant';
       components: {Tabs, Tags, FormItem, NumberPad},
     })
 export default class Money extends Vue {
+
   get recordList() {
     return this.$store.state.recordList;
   }
 
   recordTypeList = recordTypeList;
   record: RecordItem = {
-    tags: [], notes: '', type: '-', amount: 0
+    tags: [], notes: '', type: '-', amount: 0, createdAt: new Date().toISOString()
   };
 
   created() {
@@ -66,7 +76,12 @@ export default class Money extends Vue {
   flex-direction: column-reverse;
 
 }
-
+.notes{
+  background: white;
+}
+.createAt{
+  background: white;
+}
 </style>
 <style lang="scss" scoped>
 
