@@ -25,5 +25,8 @@ export default {
 .content {
   overflow: auto;
   flex-grow: 1;
+  &::-webkit-scrollbar{
+    display: none;
+  }
 }
 </style>
